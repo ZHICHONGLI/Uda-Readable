@@ -2,4 +2,5 @@
 # Readable 
 
 ## This project is a practice for Udacity React Nanodegree Redux Session
-### Dependency: [Readable API Server](https://github.com/ZHICHONGLI/reactnd-project-readable-starter)
+### Dependency: 
+[Readable API Server](https://github.com/ZHICHONGLI/reactnd-project-readable-starter) `https://github.com/ZHICHONGLI/reactnd-project-readable-starter`
