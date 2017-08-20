@@ -12,6 +12,13 @@ body {
   align-items: center;
   padding-left: 20px
 }
+.activrbar {
+  background-color: lightblue;
+  color: black;
+  margin-left: 35px;
+  padding: 6px 10px 6px 10px;
+  border: 2px solid black
+}
 .navitem {
   color: white;
   margin-left: 35px 
