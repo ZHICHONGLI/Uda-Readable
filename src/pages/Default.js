@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class Default extends Component {
+class DefaultPage extends Component {
   render() {
     return (
       <div>
         default
-
         <Link to="/category">
           category
         </Link>
@@ -15,4 +14,4 @@ class Default extends Component {
   }
 }
 
-export default Default;
+export default DefaultPage;
