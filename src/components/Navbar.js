@@ -22,15 +22,21 @@ class Navbar extends Component {
     history: PropTypes.object.isRequired
   }
   render() {
+    const style = {marginBottom: '20px'};
     return (
-      <div>
+      <div style={style}>
         <nav className='navbar'>
           <span>Readable App</span>
           {list.map(item => {
             const match = this.props.location.pathname === item.url;
-            console.log(match);
             return (
-              <span key={item.name} className='navitem'> | <Link className={match?'activrbar':'navitem'} to={item.url}>{item.name}</Link></span>
+              <span key={item.name} className='navitem'> |
+                {
+                  match ?
+                    <span className='activrbar'>{item.name}</span> :
+                    <Link className='navitem' to={item.url}>{item.name}</Link>
+                }
+              </span>
             )}
           )}
         </nav>

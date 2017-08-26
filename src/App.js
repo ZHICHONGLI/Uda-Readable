@@ -4,12 +4,13 @@ import Navbar from './components/Navbar';
 import DefaultPage from './pages/Default';
 import CategoryPage from './pages/Category';
 import NotFoundPage from './pages/NotFoundPage';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
 const store = createStore(
-  reducer
+  reducer ,applyMiddleware(thunk)
 );
 
 class App extends Component {
