@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Navbar from './components/Navbar';
 import DefaultPage from './pages/Default';
 import CategoryPage from './pages/Category';
+import PostPage from './pages/Post';
 import NotFoundPage from './pages/NotFoundPage';
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
@@ -16,7 +17,7 @@ const store = createStore(
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="container-fluid">
         <Provider store={store}>
           <Router>
             <div>
@@ -24,8 +25,9 @@ class App extends Component {
               <Switch>
                 <Redirect exact from="/" to="default"/>
                 <Route path="/default" component={DefaultPage}/>
-                <Route path="/category" render={({history}) => (
-                  <CategoryPage/>
+                <Route path="/category" exact component = {CategoryPage}/>
+                <Route path="/category/:cat" exact component = {CategoryPage}/>
+                <Route path="/post/:id" component= {PostPage}/>
                 )}/>
                 <Route render={NotFoundPage}/>
               </Switch>

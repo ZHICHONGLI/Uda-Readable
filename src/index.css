@@ -13,10 +13,11 @@ body {
   padding-left: 20px
 }
 .activrbar {
-  background-color: lightblue;
+  background-color: #e8e8ed;
   color: black;
+  font-size: 16px;
   margin-left: 35px;
-  padding: 6px 10px 6px 10px;
+  padding: 8px 12px 8px 12px;
   border: 2px solid black
 }
 .navitem {
@@ -26,4 +27,23 @@ body {
 .misc-page {
   text-align: center;
   padding: 80px;
+}
+.page-container {
+  margin-top: -40px;
+  padding: 0px 25px 25px 25px;
+}
+.default-content-container {
+  background-color: #e8e8ed;
+  margin-top: 8px;
+  padding: 5px
+}
+.cat-container {
+  color: darkgrey;
+  background-color: #e8e8ed;
+  padding: 10px;
+  font-size: 20px
+}
+.post-list-table {
+  margin: 5px;
+  border: 2px solid white;
 }
