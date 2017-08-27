@@ -1,9 +1,9 @@
-import * as CategoryAPI from '../apis/Category.API';
+import * as API from '../apis/index';
 
 export const fetchAllCats = () => {
   console.log('fet action');
   return (dispatch) => {
-    CategoryAPI.fetchCategories().then(res => {
+    API.fetchCategories().then(res => {
       dispatch({
         type: 'FETCH_ALL_CATS',
         categories: res.categories
@@ -12,19 +12,22 @@ export const fetchAllCats = () => {
   }
 }
 
-// export const test = () => {
-//   console.log('test action');
-//   return dispatch => {
-//     dispatch({
-//       type: 'TEST'
-//     })
-//   }
-//   // type: 'TEST'
-// }
+export const fetchAllPosts = () => {
+  return dispatch => {
+    API.fetchAllPosts().then(res => {
+      dispatch({
+        type: 'FETCH_ALL_POSTS',
+        posts: res
+      })
+    })
+  }
+}
 
-export function test () {
-  console.log('test action')
-  return {
-    type: 'TEST'
+export const setSortType = (e) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'SET_SORT_TYPE',
+      sort: e
+    })
   }
 }

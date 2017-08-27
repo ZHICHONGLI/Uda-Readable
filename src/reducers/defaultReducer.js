@@ -1,20 +1,23 @@
 const initialState = {
   categories: [],
-  isFetching: false
+  allPosts: [],
+  activeSortType: 'voteHigh'
 };
 
 export default (state = initialState, action) => {
-  console.log(action.type);
   switch (action.type) {
     case 'FETCH_ALL_CATS':
-      console.log(action);
       return {
-        ...state,
-        categories: action.categories
+        ...state, categories: action.categories
       }
-    case 'TEST':
-      console.log('test');
-      return state
+    case 'FETCH_ALL_POSTS':
+      return {
+        ...state, allPosts: action.posts
+      }
+    case 'SET_SORT_TYPE':
+      return {
+        ...state, activeSortType: action.sort
+      }
     default :
       return state;
   }
