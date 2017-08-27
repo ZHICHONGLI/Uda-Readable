@@ -24,7 +24,7 @@ class Navbar extends Component {
   render() {
     const style = {marginBottom: '20px'};
     return (
-      <div style={style}>
+      <div style={style} className='row'>
         <nav className='navbar'>
           <span>Readable App</span>
           {list.map(item => {
