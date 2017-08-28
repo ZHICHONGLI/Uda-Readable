@@ -1,7 +1,6 @@
 import * as API from '../apis/index';
 
 export const fetchAllCats = () => {
-  console.log('fet action');
   return (dispatch) => {
     API.fetchCategories().then(res => {
       dispatch({
@@ -15,6 +14,13 @@ export const fetchAllCats = () => {
 export const fetchAllPosts = () => {
   return dispatch => {
     API.fetchAllPosts().then(res => {
+      res.sort((a, b) => {
+        if(a.voteScore > b.voteScore) {
+          return -1
+        } else {
+          return 1
+        }
+      })
       dispatch({
         type: 'FETCH_ALL_POSTS',
         posts: res

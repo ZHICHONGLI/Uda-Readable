@@ -19,28 +19,63 @@ class DefaultPage extends Component {
     this.DefaultAction.fetchAllCats();
     this.DefaultAction.fetchAllPosts();
   }
-  
-  handleSortPosts(event) {
-    this.DefaultAction.setSortType(event.target.value);
+
+  sortPosts (e, allPosts) {
+    if(e === 'voteHigh'){
+      allPosts.sort((a, b) => {
+        if (a.voteScore > b.voteScore) {
+          return -1
+        } else {
+          return 1
+        }
+      })
+    } else if (e === 'voteLow'){
+      allPosts.sort((a, b) => {
+        if (a.voteScore < b.voteScore) {
+          return -1
+        } else {
+          return 1
+        }
+      })
+    } else if (e === 'timeNew'){
+      allPosts.sort((a, b) => {
+        if (a.timestamp > b.timestamp) {
+          return -1
+        } else {
+          return 1
+        }
+      })
+    } else if (e === 'timeOld'){
+      allPosts.sort((a, b) => {
+        if (a.timestamp < b.timestamp) {
+          return -1
+        } else {
+          return 1
+        }
+      })
+    }
   }
 
   render() {
     const {categories, allPosts, activeSortType} = this.props.DefaultReducer;
+    const handleSortPosts = (e) => {
+      this.DefaultAction.setSortType(e);
+      this.sortPosts(e, allPosts);
+    }
     return (
       <div className='row page-container'>
         <div className='row'>
           <CategoryList
             categories={categories}
           />
-          <button className='btn btn-default' onClick={()=>console.log(this.props.DefaultReducer)}>test</button>
         </div>
         <div className='row  default-content-container'>
           <div className='row'>
             <span className='col-sm-2'>All Posts</span>
-            <span className='col-sm-3 col-sm-offset-7'>Sort By: 
+            <span className='col-sm-2 col-sm-offset-7'>Sort By: 
               <select
                 value={activeSortType}
-                onChange={(event)=>this.handleSortPosts(event)}
+                onChange={(event)=>handleSortPosts(event.target.value)}
               >
                 <option value='voteHigh'>Votes from High to Low</option>
                 <option value='voteLow'>Votes from Low to High</option>
@@ -48,6 +83,7 @@ class DefaultPage extends Component {
                 <option value='timeOld'>Post from Old to New</option>
               </select>
             </span>
+            <span className='btn btn-primary' onClick={()=> this.props.history.push('/newpost')}>Post</span>
           </div>
           <div className='row'>
             <PostsList

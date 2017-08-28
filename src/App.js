@@ -28,7 +28,7 @@ class App extends Component {
                 <Route path="/category" exact component = {CategoryPage}/>
                 <Route path="/category/:cat" exact component = {CategoryPage}/>
                 <Route path="/post/:id" component= {PostPage}/>
-                )}/>
+                <Route path="/newpost" render={()=><div>new post</div>}/>
                 <Route render={NotFoundPage}/>
               </Switch>
             </div>
