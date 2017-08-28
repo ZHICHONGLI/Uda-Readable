@@ -34,7 +34,7 @@ body {
 }
 .default-content-container {
   background-color: #e8e8ed;
-  margin-top: 8px;
+  margin-top: 20px;
   padding: 5px
 }
 .cat-container {
@@ -46,4 +46,8 @@ body {
 .post-list-table {
   margin: 5px;
   border: 2px solid white;
+}
+.cat-header {
+  background: linear-gradient(to right, #e8e8ed, white);
+  padding: 5px
 }

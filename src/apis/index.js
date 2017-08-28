@@ -10,6 +10,6 @@ export function fetchAllPosts () {
 
 export function fetchCatPosts (cate) {
   return fetch(`http://localhost:5001/${cate}/posts`, { headers: { 'Authorization': 'whatever-you-want' }})
-    .then(res => res.json)
+    .then(res => res.json())
 }
 
