@@ -13,3 +13,7 @@ export function fetchCatPosts (cate) {
     .then(res => res.json())
 }
 
+export function fetchPost (id) {
+  return fetch(`http://localhost:5001/posts/${id}`, { headers: { 'Authorization': 'whatever-you-want' }})
+    .then(res => res.json())
+}

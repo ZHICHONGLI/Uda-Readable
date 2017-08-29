@@ -51,3 +51,7 @@ body {
   background: linear-gradient(to right, #e8e8ed, white);
   padding: 5px
 }
+.post-contanainer {
+  background-color: #e8e8ed;
+  padding: 25px
+}
