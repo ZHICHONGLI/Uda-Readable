@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as PostAction from '../actions/PostAction';
+import moment from 'moment-timezone';
 
 class PostPage extends Component {
   constructor(props) {
@@ -20,10 +21,31 @@ class PostPage extends Component {
   }
   
   render() {
-    // const {currentPost} = this.props.PostReducer;
+    const {currentPost} = this.props.PostReducer;
+    if(currentPost) {
+      document.title =`${currentPost.title} Post ${currentPost.category}`;
+    }
     return (
       <div className='container post-contanainer'>
         <button onClick={()=>console.log(this.props.PostReducer)}>test</button>
+        <section className='post-header'>
+          <div className='row'>
+            <h3><em>{currentPost.title}</em></h3>
+          </div>
+          <div className='row'>
+            <i className='post-basic'>Category: {currentPost.category}</i>
+            <i className='post-basic'>Author: {currentPost.author}</i>
+            <i className='post-basic'>Time: {moment(currentPost.timestamp).format('MM/DD/YYYY  hh:mm')}</i>
+          </div>
+        </section>
+        <hr/>
+        <section className='post-body'>
+          <div className='row post-content'>{currentPost.body}</div>
+          <div className='row'>
+            <div className='vote'>Votes: {currentPost.voteScore}</div>
+          </div>
+        </section>
+        <hr/>
       </div>
     );
   }

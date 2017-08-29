@@ -3,9 +3,7 @@ import moment from 'moment-timezone';
 import { Link } from 'react-router-dom';
 
 class PostsList extends Component {
-  constructor(props){
-    super(props);
-  }
+
   render() {
     const {posts} = this.props;
     return (
