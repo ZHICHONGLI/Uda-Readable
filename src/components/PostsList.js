@@ -24,9 +24,9 @@ class PostsList extends Component {
             {
               posts.map(post => (
                 <tr key={post.id}>
-                  <td><Link to={`category/${post.category}`}>{post.category}</Link></td>
+                  <td><Link to={`/category/${post.category}`}>{post.category}</Link></td>
                   <td>{post.voteScore}</td>
-                  <td><Link to={`post/${post.id}`}>{post.title}</Link></td>
+                  <td><Link to={`/post/${post.id}`}>{post.title}</Link></td>
                   <td>{post.author}</td>
                   <td>{moment(post.timestamp).format('MM/DD/YYYY  hh:mm')}</td>
                 </tr>
