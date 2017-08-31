@@ -17,7 +17,7 @@ export const voteUp = (id) => {
       console.log(res);
       dispatch({
         type: 'VOTE_UP',
-        post: res
+        score: res
       });
     })
   }
@@ -29,7 +29,7 @@ export const voteDown = (id) => {
       console.log(res);
       dispatch({
         type: 'VOTE_DOWN',
-        post: res
+        score: res
       });
     })
   }

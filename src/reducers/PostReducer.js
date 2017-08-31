@@ -1,5 +1,6 @@
 const initialState = {
-  currentPost: {}
+  currentPost: {},
+  activeSortType: 'voteHigh'
 };
 
 export default (state = initialState, action) => {
@@ -11,6 +12,14 @@ export default (state = initialState, action) => {
     case 'SET_SORT_TYPE':
       return {
         ...state, activeSortType: action.sort
+      }
+    case 'VOTE_UP':
+      return {
+        ...state, currentPost: action.score
+      }
+    case 'VOTE_DOWN':
+      return {
+        ...state, currentPost: action.score
       }
     default :
       return state;

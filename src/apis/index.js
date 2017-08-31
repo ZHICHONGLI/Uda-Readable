@@ -1,3 +1,5 @@
+const postHeader = { 'Authorization': 'whatever-you-want', 'Content-Type': 'application/json' };
+
 export function fetchCategories () {
   return fetch('http://localhost:5001/categories',{ headers: { 'Authorization': 'whatever-you-want' }})
     .then(res => res.json())
@@ -20,20 +22,23 @@ export function fetchPost (id) {
 
 export function voteUp (id) {
   const payload = {option: 'upVote'};
-  return fetch(`http://localhost:5001/comments/${id}`,
-    { headers: { 'Authorization': 'whatever-you-want' },
+  return fetch(`http://localhost:5001/posts/${id}`,
+    { headers: postHeader,
       method: 'POST',
-      body: payload
+      body: JSON.stringify(payload)
     }
-  )
+  ).then(res => res.json())
+    .catch( (error) => console.log(error))
 }
 
 export function voteDown (id) {
-  return fetch(`http://localhost:5001/comments/${id}`,
+  return fetch(`http://localhost:5001/posts/${id}`,
     { 
       method: "POST",
-      headers: { 'Authorization': 'whatever-you-want' },
-      body: {"option": "downVote"}
+      headers: postHeader,
+      body: JSON.stringify({option: "downVote"})
     }
-  )
+  ).then(res => res.json())
+    .catch( (error) => console.log(error))
+  
 }
