@@ -81,3 +81,15 @@ hr {
 .vote-pointer:hover {
   cursor: pointer;
 }
+.comment-inline {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border-top: 2px solid #ffffff;
+  width: 60%
+}
+.comment-body {
+  margin: 2px
+}
+.comment-thumb {
+  margin-right: 5px
+}

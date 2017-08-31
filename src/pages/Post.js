@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as PostAction from '../actions/PostAction';
 import moment from 'moment-timezone';
+import CommentList from '../components/CommentList';
 
 class PostPage extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class PostPage extends Component {
     if(this.props.match.params){
       const {id }= this.props.match.params;
       this.PostAction.fetchPost(id);
+      this.PostAction.fetchPostComments(id)
     }
   }
 
@@ -26,9 +28,9 @@ class PostPage extends Component {
       this.PostAction.voteUp(id) :
       this.PostAction.voteDown(id)
   }
-  
+  hideArg = 'hide';
   render() {
-    const {currentPost} = this.props.PostReducer;
+    const {currentPost, activeSortType, comments} = this.props.PostReducer;
     if(currentPost) {
       document.title =`${currentPost.title} Post ${currentPost.category}`;
     }
@@ -51,12 +53,47 @@ class PostPage extends Component {
           <div className='row'>
             <div className='vote col-sm-1'>Votes: {currentPost.voteScore}</div>
             <div className='col-sm-2'>
-              <i className="fa fa-thumbs-o-up vote-pointer" aria-hidden="true" onClick={this.voteAction.bind(this, 'up')}></i>
-              <i className="fa fa-thumbs-o-down vote-pointer" aria-hidden="true" onClick={this.voteAction.bind(this, 'down')}></i>
+              <button className="fa fa-thumbs-o-up vote-pointer" aria-hidden="true" onClick={this.voteAction.bind(this, 'up')}></button>
+              <button className="fa fa-thumbs-o-down vote-pointer" aria-hidden="true" onClick={this.voteAction.bind(this, 'down')}></button>
             </div>
           </div>
         </section>
         <hr/>
+        <section className='post-body'>
+          <div className='row'>
+            <span>
+              <i>comments: </i>
+              <i>sort by</i>
+              <span>
+                <button
+                  className={`btn ${activeSortType?'btn-primary':'btn-default'} btn-xs`}
+                  onClick={()=>this.PostAction.sortCommentVote()}>Vote
+                </button>
+              </span>
+              <span>
+                <button
+                  className={`btn ${activeSortType?'btn-default':'btn-primary'} btn-xs`}
+                  onClick={()=>this.PostAction.sortCommentTime()}>Time
+                </button>
+              </span>
+            </span>
+            
+            {
+              comments.length ? 
+                <CommentList
+                  comments={comments}
+                  upComment={(id)=>this.PostAction.voteCommentUp(id)}
+                  downComment={(id)=>this.PostAction.voteCommentDown(id)}
+                /> :
+                <div>Leave the first comment</div> 
+            }
+          </div>
+        </section>
+        <hr/>
+        <section>
+          <div>New Comment:</div>
+          <textarea></textarea>
+        </section>
       </div>
     );
   }
