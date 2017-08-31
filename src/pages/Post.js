@@ -19,6 +19,13 @@ class PostPage extends Component {
       this.PostAction.fetchPost(id);
     }
   }
+
+  voteAction(option) {
+    const id = this.props.PostReducer.currentPost.id;
+    option === 'up' ?
+      this.PostAction.voteUp(id) :
+      this.PostAction.voteDown(id)
+  }
   
   render() {
     const {currentPost} = this.props.PostReducer;
@@ -42,7 +49,11 @@ class PostPage extends Component {
         <section className='post-body'>
           <div className='row post-content'>{currentPost.body}</div>
           <div className='row'>
-            <div className='vote'>Votes: {currentPost.voteScore}</div>
+            <div className='vote col-sm-1'>Votes: {currentPost.voteScore}</div>
+            <div className='col-sm-2'>
+              <i className="fa fa-thumbs-o-up vote-pointer" aria-hidden="true" onClick={this.voteAction.bind(this, 'up')}></i>
+              <i className="fa fa-thumbs-o-down vote-pointer" aria-hidden="true" onClick={this.voteAction.bind(this, 'down')}></i>
+            </div>
           </div>
         </section>
         <hr/>

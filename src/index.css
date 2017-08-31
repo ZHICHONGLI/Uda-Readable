@@ -75,3 +75,9 @@ body {
 hr {
   border: 1px solid white !important;
 }
+.vote-pointer {
+  margin-right: 20px
+}
+.vote-pointer:hover {
+  cursor: pointer;
+}
