@@ -1,7 +1,8 @@
 const initialState = {
   currentPost: {},
   activeSortType: true,
-  comments: []
+  comments: [],
+  inputComment: ''
 };
 
 export default (state = initialState, action) => {
@@ -77,6 +78,15 @@ export default (state = initialState, action) => {
       })
       return {
         ...state, activeSortType: false
+      }
+    case 'INPUT_COMMENT':
+      return {
+        ...state, inputComment: action.input
+      }
+    case 'POST_COMMENT':
+      const newComments = [action.newComment, ...state.comments]
+      return {
+        ...state, comments: newComments, inputComment: ''
       }
     default :
       return state;
