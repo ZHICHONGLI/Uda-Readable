@@ -70,3 +70,14 @@ export function voteCommentDown (id) {
   ).then(res => res.json())
     .catch( (error) => console.log(error))
 }
+
+export function postComment (newComment) {
+  return fetch(`http://localhost:5001/comments`,
+    { 
+      method: "POST",
+      headers: postHeader,
+      body: JSON.stringify(newComment)
+    }
+  ).then(res => res.json())
+    .catch( (error) => console.log(error))
+}
