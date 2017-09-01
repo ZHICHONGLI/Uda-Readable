@@ -63,19 +63,21 @@ class PostPage extends Component {
           <div className='row'>
             <span>
               <i className='comment-thumb'>comments: </i>
-              <i className='comment-thumb'>sort by</i>
-              <span className='comment-thumb'>
-                <button
-                  className={`btn ${activeSortType?'btn-primary':'btn-default'} btn-xs`}
-                  onClick={()=>this.PostAction.sortCommentVote()}>Vote
-                </button>
-              </span>
-              <span>
-                <button
-                  className={`btn ${activeSortType?'btn-default':'btn-primary'} btn-xs`}
-                  onClick={()=>this.PostAction.sortCommentTime()}>Time
-                </button>
-              </span>
+              {comments.length && <span>
+                <i className='comment-thumb'>sort by</i>
+                <span className='comment-thumb'>
+                  <button
+                    className={`btn ${activeSortType?'btn-primary':'btn-default'} btn-xs`}
+                    onClick={()=>this.PostAction.sortCommentVote()}>Vote
+                  </button>
+                </span>
+                <span>
+                  <button
+                    className={`btn ${activeSortType?'btn-default':'btn-primary'} btn-xs`}
+                    onClick={()=>this.PostAction.sortCommentTime()}>Time
+                  </button>
+                </span>
+              </span>}
             </span>
             
             {
