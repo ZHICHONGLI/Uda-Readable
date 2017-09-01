@@ -5,6 +5,7 @@ import DefaultPage from './pages/Default';
 import CategoryPage from './pages/Category';
 import PostPage from './pages/Post';
 import NotFoundPage from './pages/NotFoundPage';
+import NewPostPage from './pages/NewPost';
 import { createStore, applyMiddleware } from 'redux';
 import reducer from './reducers';
 import { Provider } from 'react-redux';
@@ -28,7 +29,7 @@ class App extends Component {
                 <Route path="/category" exact component = {CategoryPage}/>
                 <Route path="/category/:cat" exact component = {CategoryPage}/>
                 <Route path="/post/:id" component= {PostPage}/>
-                <Route path="/newpost" render={()=><div>new post</div>}/>
+                <Route path="/newpost" component={NewPostPage}/>
                 <Route render={NotFoundPage}/>
               </Switch>
             </div>
