@@ -30,7 +30,7 @@ class PostPage extends Component {
   }
   hideArg = 'hide';
   render() {
-    const {currentPost, activeSortType, comments} = this.props.PostReducer;
+    const {currentPost, activeSortType, comments, inputComment} = this.props.PostReducer;
     if(currentPost) {
       document.title =`${currentPost.title} Post ${currentPost.category}`;
     }
@@ -62,9 +62,9 @@ class PostPage extends Component {
         <section className='post-body'>
           <div className='row'>
             <span>
-              <i>comments: </i>
-              <i>sort by</i>
-              <span>
+              <i className='comment-thumb'>comments: </i>
+              <i className='comment-thumb'>sort by</i>
+              <span className='comment-thumb'>
                 <button
                   className={`btn ${activeSortType?'btn-primary':'btn-default'} btn-xs`}
                   onClick={()=>this.PostAction.sortCommentVote()}>Vote
@@ -91,8 +91,24 @@ class PostPage extends Component {
         </section>
         <hr/>
         <section>
-          <div>New Comment:</div>
-          <textarea></textarea>
+          <form>
+            <div className='form-group'>
+              <label>Comment:</label>
+              <p>Author: Default Athor</p>
+              <textarea
+                className='form-control'
+                rows='5'
+                onChange={(e)=>this.PostAction.inputComment(e)}
+                value={inputComment}
+                placeholder='minimum 5 chars'
+              >
+              </textarea>
+            </div>
+          </form>
+          <button className={`btn btn-default ${inputComment.length>5?'':'hide'}`}
+            onClick={()=>this.PostAction.postComment()}>
+            Submit
+          </button>
         </section>
       </div>
     );
