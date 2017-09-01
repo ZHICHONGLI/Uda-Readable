@@ -44,7 +44,7 @@ class PostPage extends Component {
           <div className='row'>
             <i className='post-basic'>Category: {currentPost.category}</i>
             <i className='post-basic'>Author: {currentPost.author}</i>
-            <i className='post-basic'>Time: {moment(currentPost.timestamp).format('MM/DD/YYYY  hh:mm')}</i>
+            <i className='post-basic'>Time: {moment(currentPost.timestamp).format('MM/DD/YYYY  hh:mm:ss')}</i>
           </div>
         </section>
         <hr/>

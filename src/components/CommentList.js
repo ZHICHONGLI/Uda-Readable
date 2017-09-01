@@ -11,7 +11,7 @@ class CommentList extends Component {
             <div className='row comment-inline' key={comment.id}>
               <div>
                 <span className='post-basic'>{comment.author}</span>
-                <span className='post-basic'>{moment(comment.timespam).format('MM/DD/YYYY  hh:mm')}</span>
+                <span className='post-basic'>{moment(comment.timestamp).format('MM/DD/YYYY  hh:mm:ss')}</span>
                 <button className="fa fa-thumbs-o-up comment-thumb" aria-hidden="true" onClick={()=>this.props.upComment(comment.id)}></button>
                 <span className='comment-thumb'>{comment.voteScore}</span>
                 <button className="fa fa-thumbs-o-down" aria-hidden="true" onClick={()=>this.props.downComment(comment.id)}></button>
