@@ -23,15 +23,39 @@ class NewPostPage extends Component {
         <div className='row'>
           <h2>New Post</h2>
         </div>
-        <div className='row'>
-          <label>Category:</label>
-          <select onChange={(e)=>console.log(e.target.value)}>
+        <div className='row input-group'>
+          <div className='input-group-addon'>Category:</div>
+          <select className='form-control' onChange={(e)=>console.log(e.target.value)}>
             {this.props.DefaultReducer.categories.map(o => (
               <option key={o.name} value={o.name}>{o.name}</option>
             ))}
           </select>
         </div>
-        
+        <div className='row'>
+          <span className='col-sm-5 input-group'>
+            <div className='input-group-addon'>Title</div>
+            <input className='form-control'
+              placeholder='Input Title'
+              onChange={e=>console.log(e.target.value)}
+            />
+          </span>
+          <span className='col-sm-5 input-group'>
+            <div className='input-group-addon'>Name</div>
+            <input className='form-control'
+              placeholder='Input Title'
+              onChange={e=>console.log(e.target.value)}
+            />
+          </span>
+        </div>
+        <div className='row input-group'>
+          <div className='input-group-addon'>Body</div>
+          <textarea
+            className='form-control'
+            rows='8'
+          />
+        </div>
+          
+                  
       </div>
     );
   }

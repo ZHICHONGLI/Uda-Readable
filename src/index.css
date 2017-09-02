@@ -53,7 +53,8 @@ body {
 }
 .post-contanainer {
   background-color: #e8e8ed;
-  padding: 20px 35px 20px 35px
+  padding: 20px 35px 20px 35px;
+  margin-bottom: 35px
 }
 .post-header {
   margin-left: 20px 
@@ -92,4 +93,7 @@ hr {
 }
 .comment-thumb {
   margin-right: 5px
+}
+.input-group {
+  margin-bottom: 10px 
 }

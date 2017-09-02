@@ -17,7 +17,7 @@ class CategoryList extends Component {
           categories.map((cat, i) => (
             <div key={i} className='col-sm-3'>
               {
-                cat.name == routeCat ?
+                cat.name === routeCat ?
                   <span>{cat.name}</span> :
                   <Link to={`/category/${cat.path}`}><span>{cat.name}</span></Link>
               }
