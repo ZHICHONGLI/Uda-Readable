@@ -54,7 +54,7 @@ class NewPostPage extends Component {
             rows='8'
           />
         </div>
-          
+        <button className='btn btn-primary'>Post it</button> 
                   
       </div>
     );
