@@ -81,3 +81,14 @@ export function postComment (newComment) {
   ).then(res => res.json())
     .catch( (error) => console.log(error))
 }
+
+export function postNew (post) {
+  return fetch(`http://localhost:5001/posts`,
+    { 
+      method: "POST",
+      headers: postHeader,
+      body: JSON.stringify(post)
+    }
+  ).then(res => res.json())
+    .catch( (error) => console.log(error))
+}

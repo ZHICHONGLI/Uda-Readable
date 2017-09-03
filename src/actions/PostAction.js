@@ -102,11 +102,61 @@ export const postComment = () => {
     newComment.author = 'Default Author';
     newComment.id = uuidv4();
     API.postComment(newComment).then(res => {
-      console.log(res)
       dispatch({
         type: 'POST_COMMENT',
         newComment: res
       })
+    })
+  }
+}
+
+export const newPostCat = (e) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'NEW_POST_CAT',
+      category: e
+    })
+  }
+}
+
+export const newPostTitle = (e) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'NEW_POST_TITLE',
+      title: e
+    })
+  }
+}
+
+export const newPostBody = (e) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'NEW_POST_BODY',
+      body: e
+    })
+  }
+}
+
+export const newPostOwner = (e) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'NEW_POST_OWNER',
+      author: e
+    })
+  }
+}
+
+export const postNew = () => {
+  return (dispatch, state) => {
+    let postBody = state().PostReducer.newPost;
+    postBody.id = uuidv4();
+    postBody.timestamp = Date.now();
+    console.log(postBody);
+    API.postNew(postBody).then(res => {
+      dispatch({
+        type: 'CLEAR_NEW_POST'
+      })
+
     })
   }
 }

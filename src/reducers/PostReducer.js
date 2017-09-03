@@ -2,7 +2,15 @@ const initialState = {
   currentPost: {},
   activeSortType: true,
   comments: [],
-  inputComment: ''
+  inputComment: '',
+  newPost: {
+    id: '',
+    timestamp: 0,
+    title: '',
+    body: '',
+    owner: '',
+    category: ''
+  }
 };
 
 export default (state = initialState, action) => {
@@ -88,6 +96,21 @@ export default (state = initialState, action) => {
       return {
         ...state, comments: newComments, inputComment: ''
       }
+    case 'NEW_POST_CAT':
+      state.newPost.category = action.category;
+      return {...state}
+    case 'NEW_POST_TITLE':
+      state.newPost.title = action.title;
+      return {...state}
+    case 'NEW_POST_BODY':
+      state.newPost.body = action.body;
+      return {...state}
+    case 'NEW_POST_OWNER':
+      state.newPost.author = action.author;
+      return {...state}
+    case 'CLEAR_NEW_POST':
+      state.newPost = initialState.newPost;
+      return {...state}
     default :
       return state;
   }
