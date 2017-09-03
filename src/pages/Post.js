@@ -107,8 +107,10 @@ class PostPage extends Component {
               </textarea>
             </div>
           </form>
-          <button className={`btn btn-default ${inputComment.length>5?'':'hide'}`}
-            onClick={()=>this.PostAction.postComment()}>
+          <button className={`btn btn-default ${inputComment.length>5?'':'disabled'}`}
+            onClick={()=>this.PostAction.postComment()}
+            disabled={inputComment.length<6}
+          >
             Submit
           </button>
         </section>
