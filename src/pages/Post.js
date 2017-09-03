@@ -62,8 +62,8 @@ class PostPage extends Component {
         <section className='post-body'>
           <div className='row'>
             <span>
-              <i className='comment-thumb'>comments: </i>
-              {comments.length && <span>
+              <i className='comment-thumb'>{comments.length} {comments.length>0?'comments':'comment'}: </i>
+              {comments.length>0 && <span>
                 <i className='comment-thumb'>sort by</i>
                 <span className='comment-thumb'>
                   <button
