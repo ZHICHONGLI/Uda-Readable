@@ -146,7 +146,7 @@ export const newPostOwner = (e) => {
   }
 }
 
-export const postNew = () => {
+export const postNew = (history) => {
   return (dispatch, state) => {
     let postBody = state().PostReducer.newPost;
     postBody.id = uuidv4();
@@ -156,7 +156,7 @@ export const postNew = () => {
       dispatch({
         type: 'CLEAR_NEW_POST'
       })
-
+      history.push(`/post/${res.id}`)
     })
   }
 }

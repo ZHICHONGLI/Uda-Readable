@@ -70,10 +70,11 @@ class NewPostPage extends Component {
             Cancel
           </button>
           <button className='btn btn-primary col-sm-1 col-sm-offset-1'
-            onClick={()=>this.PostAction.postNew()}
+            onClick={()=>this.PostAction.postNew(this.props.history)}
           >
             Post it
           </button>
+          <button onClick={()=>console.log(this.props)}>props</button>
         </div>
       </div>
     );
