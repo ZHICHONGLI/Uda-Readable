@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as PostAction from '../actions/PostAction';
 import moment from 'moment-timezone';
 import CommentList from '../components/CommentList';
+import {Link} from 'react-router-dom';
 
 class PostPage extends Component {
   constructor(props) {
@@ -42,9 +43,19 @@ class PostPage extends Component {
             <h3><em>{currentPost.title}</em></h3>
           </div>
           <div className='row'>
-            <i className='post-basic'>Category: {currentPost.category}</i>
-            <i className='post-basic'>Author: {currentPost.author}</i>
-            <i className='post-basic'>Time: {moment(currentPost.timestamp).format('MM/DD/YYYY  hh:mm:ss')}</i>
+            <span className='col-sm-8'>
+              <i className='post-basic'>Category: {currentPost.category}</i>
+              <i className='post-basic'>Author: {currentPost.author}</i>
+              <i className='post-basic'>Time: {moment(currentPost.timestamp).format('MM/DD/YYYY  hh:mm:ss')}</i>
+            </span>
+            <span className='col-sm-4'>
+              <i to='' className="fa fa-pencil vote-pointer" aria-hidden="true">
+                Edit
+              </i>
+              <i to='' className="fa fa-trash vote-pointer" aria-hidden="true">
+                Delete
+              </i>
+            </span>
           </div>
         </section>
         <hr/>
