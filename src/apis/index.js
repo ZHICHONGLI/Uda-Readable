@@ -112,3 +112,14 @@ export function delComment (id) {
   ).then(res => res.json())
     .catch( (error) => console.log(error))
 }
+
+export function editComment (post, id) {
+  return fetch(`http://localhost:5001/comments/${id}`,
+    { 
+      method: "PUT",
+      headers: postHeader,
+      body: JSON.stringify(post)
+    }
+  ).then(res => res.json())
+    .catch( (error) => console.log(error))
+}

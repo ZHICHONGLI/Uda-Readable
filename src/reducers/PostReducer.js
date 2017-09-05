@@ -12,7 +12,11 @@ const initialState = {
     category: ''
   },
   delPostShow: false,
-  delCmtShow: false
+  delCmtShow: false,
+  editCmtShow: false,
+  editPostShow: false,
+  editId: 0,
+  delId: 0
 };
 
 export default (state = initialState, action) => {
@@ -121,10 +125,19 @@ export default (state = initialState, action) => {
       return {...state}
     case 'DEL_CMT_SHOW':
       state.delCmtShow = true;
+      state.delId = action.id;
       return {...state}
     case 'DEL_CMT_HIDE':
       state.delCmtShow = false;
-      return {...state}     
+      return {...state}
+    case 'EDIT_CMT_SHOW':
+      state.editCmtShow = true;
+      state.editId = action.id;
+      return {...state}
+    case 'EDIT_CMT_HIDE':
+      state.editCmtShow = false;
+      state.inputComment = '';
+      return {...state}       
     default :
       return state;
   }

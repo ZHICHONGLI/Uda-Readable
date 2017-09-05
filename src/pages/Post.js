@@ -128,7 +128,7 @@ class PostPage extends Component {
               <textarea
                 className='form-control'
                 rows='5'
-                onChange={(e)=>this.PostAction.inputComment(e)}
+                onChange={(e)=>this.PostAction.inputComment(e.target.value)}
                 value={inputComment}
                 placeholder='minimum 5 chars'
               >

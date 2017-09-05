@@ -12,16 +12,17 @@ class CommentList extends Component {
     super(props);
     this.PostAction = bindActionCreators(PostAction, props.dispatch);
   }
-  delComment(id) {
+  delComment() {
     this.PostAction.DeleteCmtHide();
-    this.PostAction.delComment(id);
+    this.PostAction.delComment();
   }
-  editComment(id) {
-    console.log(id)
+  editComment() {
+    this.PostAction.editComment();
+    this.PostAction.editCmtHide();
   }
   render() {
     const {comments} = this.props;
-    const {delCmtShow} = this.props.PostReducer;
+    const {delCmtShow, editCmtShow, inputComment} = this.props.PostReducer;
     return (
       <div className='container'>
         {
@@ -37,8 +38,11 @@ class CommentList extends Component {
                 </span>
                 <EditDelete
                   className='col-sm-4'
-                  handleEdit={()=>this.editComment(comment.id)}
-                  handleDelete={()=>this.PostAction.DeleteCmtShow()}
+                  handleEdit={()=>{
+                    this.PostAction.editCmtShow(comment.id);
+                    this.PostAction.inputComment(comment.body);
+                  }}
+                  handleDelete={()=>this.PostAction.DeleteCmtShow(comment.id)}
                 />
                 <Modal
                   isOpen={delCmtShow}
@@ -47,9 +51,30 @@ class CommentList extends Component {
                   id={comment.id}
                 >
                   <h3>Delete Comment?</h3>
-                  <button className='btn col-sm-2 btn-danger' onClick={()=>this.delComment(comment.id)}>Confirm</button>
+                  <button className='btn col-sm-2 btn-danger' onClick={()=>this.delComment()}>Confirm</button>
                   <button className='btn col-sm-2 col-sm-offset-2 btn-default'
                     onClick={()=>this.PostAction.DeleteCmtHide()}
+                  >
+                    Cancel
+                  </button>
+                </Modal>
+                <Modal
+                  isOpen={editCmtShow}
+                  onRequestClose={()=>this.PostAction.EditCmtHide()}
+                  contentLabel="Edit Comment"
+                >
+                  <h2>Edit Comment</h2>
+                  <input className='form-control'
+                    value={inputComment}
+                    onChange={(e)=>this.PostAction.inputComment(e.target.value)}
+                  >
+                  </input>
+                  <button className='btn col-sm-2 btn-primary'
+                    onClick={()=>this.editComment(comment.id)}>
+                    Edit
+                  </button>
+                  <button className='btn col-sm-2 col-sm-offset-2 btn-default'
+                    onClick={()=>this.PostAction.editCmtHide()}
                   >
                     Cancel
                   </button>

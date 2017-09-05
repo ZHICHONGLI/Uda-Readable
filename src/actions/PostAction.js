@@ -88,7 +88,7 @@ export const inputComment = (e) => {
   return (dispatch) => {
     dispatch({
       type: 'INPUT_COMMENT',
-      input: e.target.value
+      input: e
     })
   }
 }
@@ -185,10 +185,11 @@ export const DeletePost = (id) => {
   }
 }
 
-export const DeleteCmtShow = () => {
+export const DeleteCmtShow = (id) => {
   return (dispatch) => {
     dispatch ({
-      type: 'DEL_CMT_SHOW'
+      type: 'DEL_CMT_SHOW',
+      id: id
     })
   }
 }
@@ -201,8 +202,43 @@ export const DeleteCmtHide = () => {
   }
 }
 
-export const delComment = (id) => {
+export const editCmtShow = (id) => {
+  return (dispatch, state) => {
+    dispatch ({
+      type: 'EDIT_CMT_SHOW',
+      id: id
+    })
+  }
+}
+
+export const editCmtHide = () => {
   return (dispatch) => {
+    dispatch ({
+      type: 'EDIT_CMT_HIDE'
+    })
+  }
+}
+
+export const editComment = () => {
+  let newComment = {};
+  return (dispatch, state) => {
+    const id = state().PostReducer.editId;
+    newComment.body = state().PostReducer.inputComment;
+    newComment.timestamp = Date.now();
+    API.editComment(newComment, id).then(res => {
+      API.fetchPostComments(res.parentId).then(res => {
+        dispatch({
+          type: 'FETCH_COMMENTS',
+          comments: res
+        });
+      })
+    })
+  }
+}
+
+export const delComment = () => {
+  return (dispatch, state) => {
+    const id = state().PostReducer.delId;
     API.delComment(id).then(res => {
       API.fetchPostComments(res.parentId).then(res => {
         dispatch({
