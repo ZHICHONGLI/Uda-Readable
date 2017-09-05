@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import * as PostAction from '../actions/PostAction';
 import moment from 'moment-timezone';
 import CommentList from '../components/CommentList';
-import {Link} from 'react-router-dom';
-
+import EditDelete from '../components/EditDelete';
+import Modal from 'react-modal';
 class PostPage extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,7 @@ class PostPage extends Component {
   }
   componentDidMount() {
     if(this.props.match.params){
-      const {id }= this.props.match.params;
+      const {id}= this.props.match.params;
       this.PostAction.fetchPost(id);
       this.PostAction.fetchPostComments(id)
     }
@@ -27,14 +27,19 @@ class PostPage extends Component {
     const id = this.props.PostReducer.currentPost.id;
     option === 'up' ?
       this.PostAction.voteUp(id) :
-      this.PostAction.voteDown(id)
+      this.PostAction.voteDown(id);
   }
-  hideArg = 'hide';
+  delPost (id) {
+    this.PostAction.DeletePostHide();
+    this.props.history.push('/');
+    this.PostAction.DeletePost(id)
+  }
   render() {
-    const {currentPost, activeSortType, comments, inputComment} = this.props.PostReducer;
+    const {currentPost, activeSortType, comments, inputComment, delPostShow} = this.props.PostReducer;
     if(currentPost) {
       document.title =`${currentPost.title} Post ${currentPost.category}`;
     }
+    const {id} = this.props.match.params;
     return (
       <div className='container post-contanainer'>
         <button onClick={()=>console.log(this.props.PostReducer)}>test</button>
@@ -49,12 +54,24 @@ class PostPage extends Component {
               <i className='post-basic'>Time: {moment(currentPost.timestamp).format('MM/DD/YYYY  hh:mm:ss')}</i>
             </span>
             <span className='col-sm-4'>
-              <i to='' className="fa fa-pencil vote-pointer" aria-hidden="true">
-                Edit
-              </i>
-              <i to='' className="fa fa-trash vote-pointer" aria-hidden="true">
-                Delete
-              </i>
+              <EditDelete
+                handleEdit={()=>console.log(this.props.match.params.id)}
+                handleDelete={()=>this.PostAction.DeletePostShow()}
+              />
+              <Modal
+                isOpen={delPostShow}
+                onRequestClose={()=>this.PostAction.DeletePostHide()}
+                contentLabel="Delete"
+                id={id}
+              >
+                <h2>Delete Post?</h2>
+                <button className='btn col-sm-2 btn-danger' onClick={()=>this.delPost(id)}>Confirm</button>
+                <button className='btn col-sm-2 col-sm-offset-2 btn-default'
+                  onClick={()=>this.PostAction.DeletePostHide()}
+                >
+                  Cancel
+                </button>
+              </Modal>
             </span>
           </div>
         </section>

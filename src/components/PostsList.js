@@ -21,7 +21,7 @@ class PostsList extends Component {
           <tbody>
             {
               posts.map(post => (
-                <tr key={post.id}>
+                !post.deleted && <tr key={post.id}>
                   <td><Link to={`/category/${post.category}`}>{post.category}</Link></td>
                   <td>{post.voteScore}</td>
                   <td><Link to={`/post/${post.id}`}>{post.title}</Link></td>

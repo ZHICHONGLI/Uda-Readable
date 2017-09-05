@@ -81,11 +81,11 @@ class NewPostPage extends Component {
   }
 }
 
-function mapStateRoProps (state) {
+function mapStateToProps (state) {
   return {
     PostReducer: state.PostReducer,
     DefaultReducer: state.DefaultReducer
   }
 }
 
-export default connect(mapStateRoProps)(NewPostPage);
+export default connect(mapStateToProps)(NewPostPage);

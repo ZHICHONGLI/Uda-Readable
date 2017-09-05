@@ -92,3 +92,23 @@ export function postNew (post) {
   ).then(res => res.json())
     .catch( (error) => console.log(error))
 }
+
+export function delPost (id) {
+  return fetch(`http://localhost:5001/posts/${id}`,
+    { 
+      method: "DELETE",
+      headers: postHeader
+    }
+  ).then(res => res.json())
+    .catch( (error) => console.log(error))
+}
+
+export function delComment (id) {
+  return fetch(`http://localhost:5001/comments/${id}`,
+    { 
+      method: "DELETE",
+      headers: postHeader
+    }
+  ).then(res => res.json())
+    .catch( (error) => console.log(error))
+}

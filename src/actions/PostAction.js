@@ -160,3 +160,56 @@ export const postNew = (history) => {
     })
   }
 }
+
+export const DeletePostShow = () => {
+  return (dispatch) => {
+    dispatch ({
+      type: 'DEL_POST_SHOW'
+    })
+  }
+}
+
+export const DeletePostHide = () => {
+  return (dispatch) => {
+    dispatch ({
+      type: 'DEL_POST_HIDE'
+    })
+  }
+}
+
+export const DeletePost = (id) => {
+  return (dispatch) => {
+    API.delPost(id).then(res => {
+      console.log(res)
+    })
+  }
+}
+
+export const DeleteCmtShow = () => {
+  return (dispatch) => {
+    dispatch ({
+      type: 'DEL_CMT_SHOW'
+    })
+  }
+}
+
+export const DeleteCmtHide = () => {
+  return (dispatch) => {
+    dispatch ({
+      type: 'DEL_CMT_HIDE'
+    })
+  }
+}
+
+export const delComment = (id) => {
+  return (dispatch) => {
+    API.delComment(id).then(res => {
+      API.fetchPostComments(res.parentId).then(res => {
+        dispatch({
+          type: 'FETCH_COMMENTS',
+          comments: res
+        });
+      })
+    })
+  }
+}

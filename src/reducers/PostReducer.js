@@ -10,7 +10,9 @@ const initialState = {
     body: '',
     owner: '',
     category: ''
-  }
+  },
+  delPostShow: false,
+  delCmtShow: false
 };
 
 export default (state = initialState, action) => {
@@ -111,6 +113,18 @@ export default (state = initialState, action) => {
     case 'CLEAR_NEW_POST':
       state.newPost = initialState.newPost;
       return {...state}
+    case 'DEL_POST_SHOW':
+      state.delPostShow = true;
+      return {...state}
+    case 'DEL_POST_HIDE':
+      state.delPostShow = false;
+      return {...state}
+    case 'DEL_CMT_SHOW':
+      state.delCmtShow = true;
+      return {...state}
+    case 'DEL_CMT_HIDE':
+      state.delCmtShow = false;
+      return {...state}     
     default :
       return state;
   }
