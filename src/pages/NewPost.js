@@ -12,6 +12,7 @@ class NewPostPage extends Component {
     this.DefaultAction = bindActionCreators(DefaultAction, props.dispatch);
   }
   componentDidMount (){
+    document.title = 'New Post';
     if (this.props.DefaultReducer.categories.length){
 
     } else {
