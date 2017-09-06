@@ -123,3 +123,14 @@ export function editComment (post, id) {
   ).then(res => res.json())
     .catch( (error) => console.log(error))
 }
+
+export function editPost (post, id) {
+  return fetch(`http://localhost:5001/posts/${id}`,
+    { 
+      method: "PUT",
+      headers: postHeader,
+      body: JSON.stringify(post)
+    }
+  ).then(res => res.json())
+    .catch( (error) => console.log(error))
+}

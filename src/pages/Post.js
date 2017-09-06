@@ -6,6 +6,7 @@ import moment from 'moment-timezone';
 import CommentList from '../components/CommentList';
 import EditDelete from '../components/EditDelete';
 import Modal from 'react-modal';
+import NewPost from './NewPost';
 class PostPage extends Component {
   constructor(props) {
     super(props);
@@ -34,8 +35,11 @@ class PostPage extends Component {
     this.props.history.push('/');
     this.PostAction.DeletePost(id)
   }
+  editPost () {
+    this.PostAction.EditPost();
+  }
   render() {
-    const {currentPost, activeSortType, comments, inputComment, delPostShow} = this.props.PostReducer;
+    const {currentPost, activeSortType, comments, inputComment, delPostShow, editPostShow} = this.props.PostReducer;
     if(currentPost) {
       document.title =`${currentPost.title} Post ${currentPost.category}`;
     }
@@ -55,7 +59,7 @@ class PostPage extends Component {
             </span>
             <span className='col-sm-4'>
               <EditDelete
-                handleEdit={()=>console.log(this.props.match.params.id)}
+                handleEdit={()=>this.PostAction.EditPostShow()}
                 handleDelete={()=>this.PostAction.DeletePostShow()}
               />
               <Modal
@@ -68,6 +72,22 @@ class PostPage extends Component {
                 <button className='btn col-sm-2 btn-danger' onClick={()=>this.delPost(id)}>Confirm</button>
                 <button className='btn col-sm-2 col-sm-offset-2 btn-default'
                   onClick={()=>this.PostAction.DeletePostHide()}
+                >
+                  Cancel
+                </button>
+              </Modal>
+              <Modal
+                isOpen={editPostShow}
+                onRequestClose={()=>this.PostAction.EditPostHide()}
+                contentLabel="Delete"
+              >
+                <h2>Edit Post</h2>
+                <NewPost
+                  isEdit = {true}
+                />
+                <button className='btn col-sm-2 col-sm-offset-3 btn-primary' onClick={()=>this.editPost()}>update</button>
+                <button className='btn col-sm-2 col-sm-offset-2 btn-default'
+                  onClick={()=>this.PostAction.EditPostHide()}
                 >
                   Cancel
                 </button>

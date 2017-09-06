@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as PostAction from '../actions/PostAction';
 import * as DefaultAction from '../actions/DefaultAction';
+import {Link} from 'react-router-dom';
 
 class NewPostPage extends Component {
   constructor(props) {
@@ -20,12 +21,14 @@ class NewPostPage extends Component {
 
   render() {
     const {title, body, category, author} = this.props.PostReducer.newPost;
+    const {isEdit} = this.props;
+    console.log(this.props.PostReducer.newPost)
     return (
       <div className='container post-contanainer'>
         <div className='row'>
-          <h2>New Post</h2>
+          {!isEdit && <h2>New Post</h2>}
         </div>
-        <div className='row input-group'>
+        {!isEdit && <div className='row input-group'>
           <div className='input-group-addon'>Category:</div>
           <select
             className='form-control'
@@ -37,22 +40,24 @@ class NewPostPage extends Component {
               <option key={o.name} value={o.name}>{o.name}</option>
             ))}
           </select>
-        </div>
+        </div>}
         <div className='row'>
           <div className='col-sm-5 input-group'>
             <div className='input-group-addon'>Title</div>
             <input className='form-control'
               placeholder='Input Title'
               onChange={e=>this.PostAction.newPostTitle(e.target.value)}
+              value={title}
             />
           </div>
-          <div className='col-sm-5 input-group'>
+          {!isEdit && <div className='col-sm-5 input-group'>
             <div className='input-group-addon'>Name</div>
             <input className='form-control'
               placeholder='Input Author Name'
               onChange={e=>this.PostAction.newPostOwner(e.target.value)}
+              value={author}
             />
-          </div>
+          </div>}
         </div>
         <div className='row input-group'>
           <div className='input-group-addon'>Body</div>
@@ -60,22 +65,29 @@ class NewPostPage extends Component {
             className='form-control'
             rows='8'
             onChange={e=>this.PostAction.newPostBody(e.target.value)}
+            value={body}
           />
         </div>
-        <div className='row'>
-          <button
-            className='btn btn-light col-sm-1 col-sm-offset-9'
-            onClick={()=>console.log(this.props.PostReducer)}
-          >
-            Cancel
-          </button>
-          <button className='btn btn-primary col-sm-1 col-sm-offset-1'
-            onClick={()=>this.PostAction.postNew(this.props.history)}
-          >
-            Post it
-          </button>
-          <button onClick={()=>console.log(this.props)}>props</button>
-        </div>
+        {isEdit ?
+          <div className='row'>
+          
+          </div>
+          :
+          <div className='row'>
+            <Link to='/'>
+              <button
+                className='btn btn-light col-sm-1 col-sm-offset-9'
+              >
+                Cancel
+              </button>
+            </Link>
+            <button className='btn btn-primary col-sm-1 col-sm-offset-1'
+              onClick={()=>this.PostAction.postNew(this.props.history)}
+            >
+              Post it
+            </button>
+          </div>
+        }
       </div>
     );
   }

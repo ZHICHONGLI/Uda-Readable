@@ -157,6 +157,7 @@ export const postNew = (history) => {
         type: 'CLEAR_NEW_POST'
       })
       history.push(`/post/${res.id}`)
+      
     })
   }
 }
@@ -181,6 +182,41 @@ export const DeletePost = (id) => {
   return (dispatch) => {
     API.delPost(id).then(res => {
       console.log(res)
+    })
+  }
+}
+
+export const EditPostShow = () => {
+  return (dispatch) => {
+    dispatch ({
+      type: 'EDIT_POST_SHOW'
+    })
+  }
+}
+
+export const EditPostHide = () => {
+  return (dispatch) => {
+    dispatch ({
+      type: 'EDIT_POST_HIDE'
+    })
+  }
+}
+
+export const EditPost = () => {
+  return (dispatch, state) => {
+    const postBody = state().PostReducer.newPost;
+    let upPost = {
+      title: postBody.title,
+      body: postBody.body
+    }
+    API.editPost(upPost, postBody.id).then(res => {
+      dispatch({
+        type: 'FETCH_POST',
+        post: res
+      });
+      dispatch ({
+        type: 'EDIT_POST_HIDE'
+      })
     })
   }
 }

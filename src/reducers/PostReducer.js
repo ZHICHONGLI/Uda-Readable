@@ -9,6 +9,7 @@ const initialState = {
     title: '',
     body: '',
     owner: '',
+    author: '',
     category: ''
   },
   delPostShow: false,
@@ -18,6 +19,15 @@ const initialState = {
   editId: 0,
   delId: 0
 };
+
+const newPostInit = {
+  id: '',
+  timestamp: 0,
+  title: '',
+  body: '',
+  owner: '',
+  category: ''
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -115,13 +125,21 @@ export default (state = initialState, action) => {
       state.newPost.author = action.author;
       return {...state}
     case 'CLEAR_NEW_POST':
-      state.newPost = initialState.newPost;
+      state.newPost = Object.assign({}, newPostInit);
       return {...state}
     case 'DEL_POST_SHOW':
       state.delPostShow = true;
       return {...state}
     case 'DEL_POST_HIDE':
       state.delPostShow = false;
+      return {...state}
+    case 'EDIT_POST_SHOW':
+      state.editPostShow = true;
+      state.newPost = Object.assign({}, state.currentPost);
+      return {...state}
+    case 'EDIT_POST_HIDE':
+      state.editPostShow = false;
+      state.newPost = initialState.newPost;
       return {...state}
     case 'DEL_CMT_SHOW':
       state.delCmtShow = true;
