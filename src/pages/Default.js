@@ -96,14 +96,10 @@ class DefaultPage extends Component {
   }
 }
 
-function mapStateRoProps (state) {
+function mapStateToProps ({DefaultReducer}) {
   return {
-    DefaultReducer: state.DefaultReducer
+    DefaultReducer
   }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   DefaultAction: bindActionCreators(DefaultAction, dispatch)
-// });
-
-export default connect(mapStateRoProps)(DefaultPage);
+export default connect(mapStateToProps)(DefaultPage);
