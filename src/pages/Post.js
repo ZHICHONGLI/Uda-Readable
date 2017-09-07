@@ -18,7 +18,7 @@ class PostPage extends Component {
     if(currentPost.id) {
       document.title =`${currentPost.title} Post ${currentPost.category}`;
     }else {
-      this.props.history.push('/');
+      this.props.history.push('###');
     }
   }
   componentDidMount() {
@@ -48,7 +48,6 @@ class PostPage extends Component {
     const {id} = this.props.match.params;
     return (
       <div className='container post-contanainer'>
-        <button onClick={()=>console.log(this.props.PostReducer)}>test</button>
         <section className='post-header'>
           <div className='row'>
             <h3><em>{currentPost.title}</em></h3>
