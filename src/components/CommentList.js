@@ -91,7 +91,7 @@ class CommentList extends Component {
 
 function mapStateToProps (state) {
   return {
-    PostReducer: state.PostReducer,
+    PostReducer: state.PostReducer
   }
 }
 

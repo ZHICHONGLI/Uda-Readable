@@ -26,7 +26,7 @@ class Navbar extends Component {
     return (
       <div style={style} className='row'>
         <nav className='navbar'>
-          <span>Readable App</span>
+          <Link to='/'><span className='header-icon'>Readable App</span></Link>
           {list.map(item => {
             const match = this.props.location.pathname === item.url;
             return (

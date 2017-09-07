@@ -14,7 +14,12 @@ class PostPage extends Component {
   }
 
   componentWillMount() {
-    document.title = 'Posts';
+    const {currentPost} = this.props.PostReducer;
+    if(currentPost.id) {
+      document.title =`${currentPost.title} Post ${currentPost.category}`;
+    }else {
+      this.props.history.push('/');
+    }
   }
   componentDidMount() {
     if(this.props.match.params){
@@ -40,9 +45,6 @@ class PostPage extends Component {
   }
   render() {
     const {currentPost, activeSortType, comments, inputComment, delPostShow, editPostShow} = this.props.PostReducer;
-    if(currentPost) {
-      document.title =`${currentPost.title} Post ${currentPost.category}`;
-    }
     const {id} = this.props.match.params;
     return (
       <div className='container post-contanainer'>

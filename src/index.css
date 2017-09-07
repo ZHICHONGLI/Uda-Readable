@@ -12,6 +12,13 @@ body {
   align-items: center;
   padding-left: 20px
 }
+.header-icon{
+  color: white;
+  font-size: 16px
+}
+.header-icon:hover{
+  text-decoration-line: none;
+}
 .activrbar {
   background-color: #e8e8ed;
   color: black;
