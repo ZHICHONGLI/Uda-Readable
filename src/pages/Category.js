@@ -69,6 +69,7 @@ class CategoryPage extends Component {
     const {categories} = this.props.DefaultReducer;
     const {cat} = this.props.match.params;
     const {catPosts, activeSortType} = this.props.CategoryReducer;
+    const qty = catPosts.length;
     const handleSortPosts = (e) => {
       this.CategoryAction.setSortType(e);
       this.sortPosts(e, catPosts);
@@ -86,7 +87,7 @@ class CategoryPage extends Component {
             <h3 className='cat-header'>{cat.toUpperCase()}</h3>
           </div>
           <div className='row'>
-            <span className='col-sm-2'>Posts of {cat}</span>
+            <span className='col-sm-2'>{qty} of {qty > 1 ?'Posts': 'Post'} of {cat}</span>
             <span className='col-sm-2 col-sm-offset-7'>Sort By: 
               <select
                 value={activeSortType}

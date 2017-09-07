@@ -71,7 +71,7 @@ class DefaultPage extends Component {
         </div>
         <div className='row  default-content-container'>
           <div className='row'>
-            <span className='col-sm-2'>All Posts</span>
+            <span className='col-sm-2'>{categories.length} of All Posts</span>
             <span className='col-sm-2 col-sm-offset-7'>Sort By: 
               <select
                 value={activeSortType}
