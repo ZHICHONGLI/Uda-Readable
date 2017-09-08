@@ -87,7 +87,7 @@ class CategoryPage extends Component {
             <h3 className='cat-header'>{cat.toUpperCase()}</h3>
           </div>
           <div className='row'>
-            <span className='col-sm-2'>{qty} of {qty > 1 ?'Posts': 'Post'} of {cat}</span>
+            <span className='col-sm-2'>Posts of {cat}</span>
             <span className='col-sm-2 col-sm-offset-7'>Sort By: 
               <select
                 value={activeSortType}
